@@ -39,6 +39,7 @@ function App() {
         track.stop()
       })
       clearInterval(intervalId)
+      setPitch('')
   }
 
   function action() {
@@ -86,7 +87,7 @@ function App() {
   return (
     <>
     <div style={{display:"flex", justifyContent:"center", alignItems:"center", height:'100vh', fontSize:"10em"}}>
-      {pitch} 
+      {pitch}
     </div>
     <div style={{position:"absolute", bottom:'50px', width:'100%', margin:'0 auto'}}>
     {!streamActive ? (
