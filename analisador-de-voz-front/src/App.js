@@ -26,20 +26,20 @@ function App() {
   const [streamActive, setStreamActive] = useState();
   const [stream, setStream] = useState();
   const [intervalId, setIntervalId] = useState();
-  const [pitch, setPitch ] = useState();
+  const [pitch, setPitch] = useState();
 
   function setStreamOn() {
     setStreamActive(true);
-    action()
+    action();
   }
 
   function setStreamOff() {
-      setStreamActive(false);
-      stream.getTracks().forEach((track)=>{
-        track.stop()
-      })
-      clearInterval(intervalId)
-      setPitch('')
+    setStreamActive(false);
+    stream.getTracks().forEach((track) => {
+      track.stop();
+    });
+    clearInterval(intervalId);
+    setPitch("");
   }
 
   function action() {
@@ -48,7 +48,7 @@ function App() {
 
     // Obter o fluxo de mídia (microfone)
     navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
-      setStream(stream)
+      setStream(stream);
       // Conectar o fluxo de mídia ao contexto de áudio
       const source = audioContext.createMediaStreamSource(stream);
 
@@ -77,38 +77,43 @@ function App() {
 
         // Transformar a frequência em uma nota musical
         const note = getNoteFromPitch(pitch);
-        setPitch(note)
-
-      }, 50)
-      setIntervalId(intervalId)
+        setPitch(note);
+      }, 50);
+      setIntervalId(intervalId);
     });
   }
 
   return (
     <>
-    <div style={{display:"flex", justifyContent:"center", alignItems:"center", height:'100vh', fontSize:"10em"}}>
-      {pitch}
-    </div>
-    <div style={{position:"absolute", bottom:'50px', width:'100%', margin:'0 auto'}}>
-    {!streamActive ? (
-        <div className="App">
-          <button
-            onClick={setStreamOn}
-          >
-            Start
-          </button>
-        </div>
-      ) : (
-        <div className="App">
-          <button
-            onClick={setStreamOff}
-          >
-            Stop
-          </button>
-        </div>
-      )}
-    </div>
-
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+          fontSize: "10em",
+        }}
+      >
+        {pitch}
+      </div>
+      <div
+        style={{
+          position: "absolute",
+          bottom: "50px",
+          width: "100%",
+          margin: "0 auto",
+        }}
+      >
+        {!streamActive ? (
+          <div className="App">
+            <button onClick={setStreamOn}>Start</button>
+          </div>
+        ) : (
+          <div className="App">
+            <button onClick={setStreamOff}>Stop</button>
+          </div>
+        )}
+      </div>
     </>
   );
 }
