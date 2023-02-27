@@ -1,45 +1,47 @@
 import "./App.css";
 import { useState } from "react";
 
-// Get the audio stream from the microphone
-navigator.mediaDevices.getUserMedia({ audio: true, video: false }).then(function(stream) {
-  // Create an audio source from the stream
-  var source = audioContext.createMediaStreamSource(stream);
+// const audioContext = new AudioContext();
 
-  // Create a real-time analyser
-  var analyser = audioContext.createAnalyser();
-  source.connect(analyser);
+// // Get the audio stream from the microphone
+// navigator.mediaDevices.getUserMedia({ audio: true, video: false }).then(function(stream) {
+//   // Create an audio source from the stream
+//   var source = audioContext.createMediaStreamSource(stream);
 
-  // Create arrays to hold the frequency and time domain data
-  var frequencyData = new Uint8Array(analyser.frequencyBinCount);
-  var timeDomainData = new Uint8Array(analyser.frequencyBinCount);
+//   // Create a real-time analyser
+//   var analyser = audioContext.createAnalyser();
+//   source.connect(analyser);
 
-  // Continuously update the frequency and time domain data
-  function update() {
-    analyser.getByteFrequencyData(frequencyData);
-    analyser.getByteTimeDomainData(timeDomainData);
+//   // Create arrays to hold the frequency and time domain data
+//   var frequencyData = new Uint8Array(analyser.frequencyBinCount);
+//   var timeDomainData = new Uint8Array(analyser.frequencyBinCount);
 
-    // Calculate the average amplitude
-    var amplitude = 0;
-    for (var i = 0; i < timeDomainData.length; i++) {
-      amplitude += timeDomainData[i];
-    }
-    amplitude /= timeDomainData.length;
+//   // Continuously update the frequency and time domain data
+//   function update() {
+//     analyser.getByteFrequencyData(frequencyData);
+//     analyser.getByteTimeDomainData(timeDomainData);
 
-    // Compare the frequency data with reference spectrums
-    // ...
+//     // Calculate the average amplitude
+//     var amplitude = 0;
+//     for (var i = 0; i < timeDomainData.length; i++) {
+//       amplitude += timeDomainData[i];
+//     }
+//     amplitude /= timeDomainData.length;
 
-    // Determine the timbre
-    // ...
+//     // Compare the frequency data with reference spectrums
+//     // ...
 
-    console.log("Amplitude:", amplitude);
-    console.log("Timbre:", timbre);
+//     // Determine the timbre
+//     // ...
 
-    requestAnimationFrame(update);
-  }
+//     console.log("Amplitude:", amplitude);
+//     console.log("Timbre:", timbre);
 
-  update();
-});
+//     requestAnimationFrame(update);
+//   }
+
+//   update();
+// });
 
 
 const MIN_FREQUENCY = 0;
@@ -135,7 +137,7 @@ function App() {
         // ...
 
         console.log("Amplitude:", amplitude);
-        console.log("Timbre:", timbre);
+        // console.log("Timbre:", timbre);
 
         requestAnimationFrame(update);
       }
